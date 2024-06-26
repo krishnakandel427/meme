@@ -33,6 +33,7 @@
             overflow: hidden;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 200px;
         }
         .meme img {
             width: 100%;
@@ -44,7 +45,35 @@
             background-color: #f4f4f4;
             border-top: 1px solid #ddd;
         }
+        .reaction {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background-color: #e0f7fa;
+            border-top: 1px solid #ddd;
+        }
+        .reaction button {
+            background-color: #ffeb3b;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .reaction button:hover {
+            background-color: #fdd835;
+        }
+        .reaction span {
+            margin-left: 10px;
+            font-weight: bold;
+        }
     </style>
+    <script>
+        function react(memeId) {
+            var reactionCount = document.getElementById('reaction-' + memeId);
+            reactionCount.innerHTML = parseInt(reactionCount.innerHTML) + 1;
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -55,71 +84,92 @@
         <div class="meme">
             <img src="erb%20meme%20(2).jpg" alt="Meme 1">
             <div class="meme-title">Meme 1</div>
+            <div class="reaction">
+                <button onclick="react('meme1')">😂 Haha</button>
+                <span id="reaction-meme1">0</span>
+            </div>
         </div>
         <div class="meme">
             <img src="Screenshot%202024-06-25%20181750.jpg" alt="Meme 2">
             <div class="meme-title">Meme 2</div>
+            <div class="reaction">
+                <button onclick="react('meme2')">😂 Haha</button>
+                <span id="reaction-meme2">0</span>
+            </div>
         </div>
         <div class="meme">
             <img src="erb%20meme%20(1).jpg" alt="Meme 3">
             <div class="meme-title">Meme 3</div>
+            <div class="reaction">
+                <button onclick="react('meme3')">😂 Haha</button>
+                <span id="reaction-meme3">0</span>
+            </div>
         </div>
-         <div class="meme">
+        <div class="meme">
             <img src="448769629_1257995558715143_7321486735240598489_n.jpg" alt="Meme 4">
             <div class="meme-title">Meme 4</div>
+            <div class="reaction">
+                <button onclick="react('meme4')">😂 Haha</button>
+                <span id="reaction-meme4">0</span>
+            </div>
         </div>
-
         <div class="meme">
             <img src="er.bp%20meme.jpg" alt="Meme 5">
             <div class="meme-title">Meme 5</div>
+            <div class="reaction">
+                <button onclick="react('meme5')">😂 Haha</button>
+                <span id="reaction-meme5">0</span>
+            </div>
         </div>
-
         <div class="meme">
             <img src="meme1%20(1).png" alt="Meme 6">
             <div class="meme-title">Meme 6</div>
-
-               <div class="meme">
-            <img src="meme1%20(2).png" alt="Meme 6">
-            <div class="meme-title">Meme 6</div>
-
-                      <div class="meme">
-            <img src="meme1%20(3).png" alt="Meme 6">
-            <div class="meme-title">Meme 6</div>
-
-                             <div class="meme">
-            <img src="meme1%20(4).png" alt="Meme 6">
-            <div class="meme-title">Meme 6</div>
-
-                                    <div class="meme">
-            <img src="meme1%20(5).png" alt="Meme 6">
-            <div class="meme-title">Meme 6</div>
-
-                                           <div class="meme">
-            <img src="meme1%20(6).png" alt="Meme 6">
-            <div class="meme-title">Meme 6</div>
-
-                                                  <div class="meme">
-            <img src="meme1%20(7).png" alt="Meme 6">
-            <div class="meme-title">Meme 6</div>
-
-                                                         <div class="meme">
-            <img src="meme1%20(8).png" alt="Meme 6">
-            <div class="meme-title">Meme 6</div>
-
-                                                                <div class="meme">
-            <img src="meme1%20(9).png" alt="Meme 6">
-            <div class="meme-title">Meme 6</div>
-
-                                                                       <div class="meme">
-            <img src="meme1%20(10).png" alt="Meme 6">
-            <div class="meme-title">Meme 6</div>
-          
-         <div class="meme">
-            <img src="more%20meme%20comming%20soon.png" alt="Meme 7">
+            <div class="reaction">
+                <button onclick="react('meme6')">😂 Haha</button>
+                <span id="reaction-meme6">0</span>
+            </div>
+        </div>
+        <div class="meme">
+            <img src="meme1%20(2).png" alt="Meme 7">
             <div class="meme-title">Meme 7</div>
+            <div class="reaction">
+                <button onclick="react('meme7')">😂 Haha</button>
+                <span id="reaction-meme7">0</span>
+            </div>
+        </div>
+        <div class="meme">
+            <img src="meme1%20(3).png" alt="Meme 8">
+            <div class="meme-title">Meme 8</div>
+            <div class="reaction">
+                <button onclick="react('meme8')">😂 Haha</button>
+                <span id="reaction-meme8">0</span>
+            </div>
+        </div>
+        <div class="meme">
+            <img src="meme1%20(4).png" alt="Meme 9">
+            <div class="meme-title">Meme 9</div>
+            <div class="reaction">
+                <button onclick="react('meme9')">😂 Haha</button>
+                <span id="reaction-meme9">0</span>
+            </div>
+        </div>
+        <div class="meme">
+            <img src="meme1%20(5).png" alt="Meme 10">
+            <div class="meme-title">Meme 10</div>
+            <div class="reaction">
+                <button onclick="react('meme10')">😂 Haha</button>
+                <span id="reaction-meme10">0</span>
+            </div>
+        </div>
+        <div class="meme">
+            <img src="more%20meme%20comming%20soon.png" alt="Meme 11">
+            <div class="meme-title">Meme 11</div>
+            <div class="reaction">
+                <button onclick="react('meme11')">😂 Haha</button>
+                <span id="reaction-meme11">0</span>
+            </div>
         </div>
         <!-- Add more memes as needed -->
     </div>
 </body>
 </html>
-
