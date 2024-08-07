@@ -3,24 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meme Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Meme Gallery</title>
+    <style>
+        body {
+            background-color: #e0f7fa; /* Bluish white background */
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        .category-tab {
+            display: flex;
+            overflow-x: auto;
+            background-color: #0288d1;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .category-tab button {
+            flex: none;
+            margin: 0 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #03a9f4;
+            color: white;
+            cursor: pointer;
+        }
+        .category-tab button.active {
+            background-color: #0288d1;
+        }
+        .meme-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .meme {
+            margin: 10px;
+            text-align: center;
+        }
+        .meme img {
+            max-width: 100%;
+            height: auto;
+        }
+        .meme button {
+            margin-top: 5px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #03a9f4;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .meme button.download {
+            background-color: #0288d1;
+        }
+        @media (min-width: 768px) {
+            .meme-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                justify-items: center;
+            }
+            .meme {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Meme Website</h1>
-        <nav>
-            <button onclick="showCategory('funny')">Funny</button>
-            <button onclick="showCategory('cute')">Cute</button>
-            <button onclick="showCategory('random')">Random</button>
-        </nav>
-    </header>
-    <main id="memesContainer">
-       <div class="meme-container">
-            <img src="meme 0(1).jpg" alt="cute">
-            <button class="download-btn">Download</button>
-        </div> <!-- Meme content will be dynamically loaded here -->
-    </main>
-    <script src="script.js"></script>
+    <div class="category-tab">
+        <button class="active" onclick="showMemes('teacher')">Teacher Memes</button>
+        <button onclick="showMemes('nepali')">Nepali Memes</button>
+        <button onclick="showMemes('iykyk')">IYKYK Memes</button>
+        <button onclick="showMemes('student')">Student Memes</button>
+    </div>
+    <div class="meme-container" id="meme-container"></div>
+
+    <script>
+        const memes = {
+            teacher: Array.from({ length: 99 }, (_, i) => `T${i + 1}.JPG`),
+            nepali: Array.from({ length: 99 }, (_, i) => `N${i + 1}.JPG`),
+            iykyk: Array.from({ length: 99 }, (_, i) => `I${i + 1}.JPG`),
+            student: Array.from({ length: 99 }, (_, i) => `S${i + 1}.JPG`)
+        };
+
+        function showMemes(category) {
+            const container = document.getElementById('meme-container');
+            container.innerHTML = '';
+            memes[category].forEach(meme => {
+                const memeDiv = document.createElement('div');
+                memeDiv.className = 'meme';
+                memeDiv.innerHTML = `
+                    <img src="${meme}" alt="${meme}">
+                    <br>
+                    <button class="download" onclick="downloadMeme('${meme}')">Download</button>
+                    <button class="share" onclick="shareMeme('${meme}')">Share</button>
+                `;
+                container.appendChild(memeDiv);
+            });
+            document.querySelectorAll('.category-tab button').forEach(button => button.classList.remove('active'));
+            document.querySelector(`button[onclick="showMemes('${category}')"]`).classList.add('active');
+        }
+
+        function downloadMeme(meme) {
+            const link = document.createElement('a');
+            link.href = meme;
+            link.download = meme;
+            link.click();
+        }
+
+        function shareMeme(meme) {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Check out this meme!',
+                    url: window.location.href + meme
+                }).catch(console.error);
+            } else {
+                alert('Share functionality is not supported in your browser.');
+            }
+        }
+
+        // Show default category memes
+        showMemes('teacher');
+    </script>
 </body>
 </html>
